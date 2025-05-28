@@ -1,0 +1,34 @@
+THIS IS ONLY REFERENCE APPLICATION TO CONNECT TO LIBRE DEVICES ON LUCI PORT NUMBER 7777.
+THIS APPLICATION SUPPORTS BOTH NON SECURE LUCI AND SECURE LUCI
+
+NON SECURE LUCI - CONNECTING TO LIBRE DEVICES USING NORMAL TCP.
+SECURE LUCI - CONNECTING TO LIBRE DEVICES USING TLS OVER TCP.
+
+The X509 certificate and key in the cert folder should be used for this application only.If you need to use the certificates with your application , please contact Libre FAE along with your CSR certificate.
+
+Dependency:
+ 	This application uses openssl and json functionality.So please make sure your system has libssl,libcrypto and libjsoncpp installed.
+ 	
+
+Building the application:
+	This package is shipped with a make file that can be used to build the application.Change directory to the Makefile location and run the below command.
+
+	Command:
+	 		make
+	Output:
+			luciclient
+
+			This package will build an executable called "luciclient". 
+
+Usage:
+	To start a client for SECURE LUCI , use the below command
+
+	./luciclient --ip <ip address of LS>
+
+	To start a client for NON SECURE LUCI, use the below command
+
+	/luciclient --ip <ip address of LS> --no-ssl
+
+
+ 
+ For creating your own application for SECURE LUCI, please refer to createSecureClient() function in luci_client.cpp file. This function shows how to create an SSL Context object and load the certificate and key to this object and use this to connect to LS device.
